@@ -8,9 +8,8 @@ jobs:
   steps:
   - template: azure-pipelines-steps.yml
 
-- job: Windows
-  pool:
-    vmImage: 'windows-latest'
-  steps:
-  - template: azure-pipelines-steps.yml
-  
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
